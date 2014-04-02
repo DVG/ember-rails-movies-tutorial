@@ -7,7 +7,7 @@ EmberApp.Movie = DS.Model.extend
   cast: DS.hasMany 'actor', {async: true}
   image_url: DS.attr 'string'
 
-EmberApp.MovieAdapter = DS.FixtureAdapter
+# EmberApp.MovieAdapter = DS.FixtureAdapter
 
 EmberApp.Movie.FIXTURES = [
   {

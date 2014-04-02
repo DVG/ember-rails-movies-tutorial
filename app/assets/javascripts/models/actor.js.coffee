@@ -7,7 +7,7 @@ EmberApp.Actor = DS.Model.extend
   born: DS.attr 'date'
   appearances: DS.hasMany 'movie', {async: true}
 
-EmberApp.ActorAdapter = DS.FixtureAdapter
+# EmberApp.ActorAdapter = DS.FixtureAdapter
 
 EmberApp.Actor.FIXTURES = [
   {
@@ -91,4 +91,3 @@ EmberApp.Actor.FIXTURES = [
     appearances: [103]
   },
 ]
-
