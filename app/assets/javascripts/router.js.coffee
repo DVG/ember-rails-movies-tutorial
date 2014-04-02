@@ -8,5 +8,6 @@ EmberApp.Router.map ()->
       @resource 'cast', ->
         @route 'show', path: ':actor_id'
   @resource 'actors', ->
-    @resource 'actor', path: ":actor_id"
+    @resource 'actor', path: ":actor_id", ->
+      @resource "appearances"
   @resource 'cards'

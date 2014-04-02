@@ -1,4 +1,5 @@
 <button {{action "edit"}} class="btn btn-primary">Edit</button>
 <h2>{{name}} ({{gender}}) - {{born}}</h2>
 <div>{{bio}}</div>
-{{outlet}}
+<h3>Has appeared in:</h3>
+{{render "appearances" appearances}}
