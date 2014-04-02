@@ -3,8 +3,15 @@
   <div class="col-sm-2">
     <ul>
       {{#each movie in content}}
-        <li>{{movie.name}}</li>
+      <li>
+        {{#link-to "appearances.show" movie}}
+          {{movie.name}}
+        {{/link-to}}
+      </li>
       {{/each}}
     </ul>
+  </div>
+  <div class="col-sm-10">
+    {{outlet}}
   </div>
 </div>

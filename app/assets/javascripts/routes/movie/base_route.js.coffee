@@ -2,5 +2,4 @@
 
 EmberApp.MovieBaseRoute = Ember.Route.extend
   model: (params) ->
-    console.log "Fetching movies loaded in 'movie' route"
     @modelFor('movie')
