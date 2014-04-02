@@ -11,17 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320134956) do
+ActiveRecord::Schema.define(version: 20140317171914) do
+
+  create_table "actors", force: true do |t|
+    t.string   "name"
+    t.string   "gender"
+    t.text     "bio"
+    t.date     "born"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "cards", force: true do |t|
     t.boolean  "done"
     t.string   "title"
-    t.text     "description"
+    t.text     "description", limit: 4000
     t.text     "difficulty"
-    t.text     "comments"
-    t.text     "clue1"
-    t.text     "clue2"
-    t.text     "clue3"
+    t.text     "comments",    limit: 4000
+    t.text     "clue1",       limit: 4000
+    t.text     "clue2",       limit: 4000
+    t.text     "clue3",       limit: 4000
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "movies", force: true do |t|
+    t.string   "name"
+    t.date     "year"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
