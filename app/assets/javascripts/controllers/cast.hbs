@@ -1,0 +1,17 @@
+<hr />
+<div class="row">
+  <div class="col-sm-2">
+    <h3>Cast</h3>
+    {{#each actor in content}}
+        <li>
+          {{#link-to "cast.show" actor}}
+            {{actor.name}}
+          {{/link-to}}
+        </li>
+    {{/each}}
+    </ul>
+  </div>
+  <div class="col-sm-10">
+    {{ outlet }}
+  </div>
+</div>

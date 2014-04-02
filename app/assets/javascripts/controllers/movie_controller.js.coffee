@@ -1,5 +1,6 @@
 EmberApp.MovieController = Ember.ObjectController.extend
   isEditing: false
+  isSuccess: false
 
   currentName: (->
     @get("name")
@@ -8,18 +9,29 @@ EmberApp.MovieController = Ember.ObjectController.extend
     @get("year")
   ).property("model.year")
   currentDescription: (->
-      @get("description")
+    @get("description")
   ).property("model.description")
-
-  persist: ->
-    @set("name", @get("currentName"))
-    @set("year", @get("currentYear"))
-    @set("description", @get("currentDescription"))
+  currentImageUrl: (->
+    @get("image_url")
+  ).property("model.image_url")
 
   reset: ->
     @set("currentName", @get("name"))
     @set("currentYear", @get("year"))
     @set("currentDescription", @get("description"))
+    @set("currentImageUrl", @get("image_url"))
+
+  updateProperties: ->
+    @set("name", @get("currentName"))
+    @set("year", @get("currentYear"))
+    @set("description", @get("currentDescription"))
+    @set("image_url", @get("currentImageUrl"))
+
+  showSuccessMessage: ->
+    @set("isSuccess", true)
+
+  hideSuccessMessage: ->
+    @set("isSuccess", false)
 
   actions:
     # Note: Only put button actions in "actions" section. Don't put computed
@@ -27,9 +39,17 @@ EmberApp.MovieController = Ember.ObjectController.extend
     # as 'actions'.
     edit: ->
       @set("isEditing", true)
-    save: ->
-      @persist()
-      @set("isEditing", false)
+      @hideSuccessMessage()
+    persist: ->
+      self = @
+      @updateProperties()
+      @get('content').save().then(->
+        self.showSuccessMessage()
+        self.set("isEditing", false)
+      ) ->
+        self.hideSuccessMessage()
+        self.set("isEditing", false)
     cancel: ->
       @reset()
+      @hideSuccessMessage()
       @set("isEditing", false)
